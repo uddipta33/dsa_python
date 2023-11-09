@@ -16,6 +16,22 @@ def majority(arr):
             return num
     return -1 
 
+#optimal (Moore's voting algo)
+# def majorityElement(nums) -> int:
+#         el = None
+#         count = 0
+#         n = len(nums)
+#         for i in range(0,n):
+#             if(count==0):
+#                 el = nums[i]
+#                 count=1
+#             elif(nums[i] == el):
+#                 count+=1
+#             else:
+#                 count-=1
+#         return el
+
+
 arr = [4,4,2,4,3,4,4,3,2,4]
 res = majority(arr)
 print(res)
