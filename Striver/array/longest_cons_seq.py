@@ -1,16 +1,59 @@
+#brute-force
+# def ls(a,x):
+#     n = len(a)
+#     for i in range(0,n):
+#         if a[i]==x:
+#             return True
+#     return False
+
+# def lonseq(a):
+#     n = len(a)
+#     maxi = 0
+#     count = 0
+#     for i in range(0,n):
+#         count = 1
+#         x = a[i]+1
+#         while ls(a,x):
+#             x+=1
+#             count+=1
+#         maxi = max(maxi,count)
+#     return maxi
 
 
-def longest(arr):
-    arr.sort()
-    count=0
+def better(a):
+    n = len(a)
+    lastSmall = -100000
+    currCount = 0
     maxi = 0
-    n = len(arr)
-    for i in range(n-1):
-        if(arr[i+1]-arr[i]==1):
+    a.sort()
+    for i in range(0,n):
+        if(a[i]-1 == lastSmall):
+            currCount+=1
+            lastSmall=a[i]
+        elif(a[i]-1 != lastSmall):
+            currCount = 1
+            lastSmall = a[i]
+        maxi = max(currCount,maxi)
+    return maxi
+
+#optimal using set
+def optimal(a):
+    n = len(a)
+    st = set()
+    for i in a:
+        st.add(i)
+    maxi = 0
+    for i in st:
+        count=1
+        if(i-1 in st):
+            break
+        x = i+1
+        while(x in st):
             count+=1
-            maxi = max(maxi,count)
-    return maxi+1
+            x+=1
+        maxi = max(maxi,count)
+    return maxi
 
 arr = [100, 200, 1, 3, 2, 4]
-res = longest(arr)
+res = optimal(arr)
 print(res) 
